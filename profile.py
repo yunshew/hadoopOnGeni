@@ -1,6 +1,7 @@
 import geni.portal as portal
 import geni.rspec.pg as RSpec
 import geni.rspec.igext
+import geni.rspec.emulab
 
 pc = portal.Context()
 
@@ -50,7 +51,8 @@ lan.addInterface( iface )
 rspec.addResource( node )
 
 #Add data
-node = RSpec.RawPC("namenode")
+request = pc.makeRequestRSpec()
+node = request.RawPC("namenode")
 bs = node.Blockstore("nn_data", "/mydata")
 bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
 
