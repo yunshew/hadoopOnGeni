@@ -48,6 +48,9 @@ node.addService(RSpec.Execute(shell="/bin/sh",
 iface = node.addInterface( "if0" )
 lan.addInterface( iface )
 rspec.addResource( node )
+bs = node.Blockstore("nn_bs", "/mydata")
+bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
+
 
 
 #data node
@@ -65,6 +68,8 @@ for i in range( params.n ):
     iface = node.addInterface( "if0" )
     lan.addInterface( iface )
     rspec.addResource( node )
+    bs = node.Blockstore("bs"+str(i), "/mydata")
+    bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
 
 
 from lxml import etree as ET
