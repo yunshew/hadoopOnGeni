@@ -50,7 +50,7 @@ lan.addInterface( iface )
 rspec.addResource( node )
 
 #Add data
-node = request.RawPC("namenode")
+node = RSpec.RawPC("namenode")
 bs = node.Blockstore("nn_data", "/mydata")
 bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
 
@@ -71,7 +71,7 @@ for i in range( params.n ):
     iface = node.addInterface( "if0" )
     lan.addInterface( iface )
     rspec.addResource( node )
-    node = request.RawPC("datanode" + str(i))
+    node = RSpec.RawPC("datanode" + str(i))
     bs = node.Blockstore("data"+str(i), "/mydata")
     bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
 
