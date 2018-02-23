@@ -41,8 +41,7 @@ node = RSpec.RawPC( "namenode" )
 #node.hardware_type = "c8220x"
 node.disk_image = IMAGE
 bs = node.Blockstore("nn_bs", "/data")
-bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
-#bs.size = "100GB"
+bs.size = "1000GB"
 node.addService(RSpec.Install( DOWNLOAD, "/tmp" ))
 node.addService(RSpec.Execute(shell="/bin/sh", command="sudo sh /tmp/download.sh"))
 node.addService(RSpec.Execute(shell="/bin/sh",
