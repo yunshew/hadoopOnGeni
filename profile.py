@@ -55,6 +55,7 @@ request = pc.makeRequestRSpec()
 node = request.RawPC("namenode")
 bs = node.Blockstore("nn_data", "/mydata")
 bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
+rspec.addResource( node )
 
 
 
@@ -76,6 +77,7 @@ for i in range( params.n ):
     node = RSpec.RawPC("datanode" + str(i))
     bs = node.Blockstore("data"+str(i), "/mydata")
     bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
+    rspec.addResource( node )
 
 
 from lxml import etree as ET
