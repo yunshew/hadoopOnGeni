@@ -48,11 +48,13 @@ node.addService(RSpec.Execute(shell="/bin/sh",
                                   command="sh /tmp/hadoopOnGeni/install.sh"))
 iface = node.addInterface( "if0" )
 lan.addInterface( iface )
+rspec.addResource( node )
+
+request = pc.makeRequestRSpec()
+node = request.RawPC("d_node")
 bs = node.Blockstore("nn_data", "/mydata")
 bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
 rspec.addResource( node )
-
-
 
 #data node
 #slave node                              
