@@ -41,7 +41,8 @@ node = RSpec.RawPC( "namenode" )
 #node.hardware_type = "c8220x"
 node.disk_image = IMAGE
 bs = node.Blockstore("nn_bs", "/data")
-bs.size = "100GB"
+bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
+#bs.size = "100GB"
 node.addService(RSpec.Install( DOWNLOAD, "/tmp" ))
 node.addService(RSpec.Execute(shell="/bin/sh", command="sudo sh /tmp/download.sh"))
 node.addService(RSpec.Execute(shell="/bin/sh",
@@ -50,11 +51,6 @@ iface = node.addInterface( "if0" )
 lan.addInterface( iface )
 rspec.addResource( node )
 
-request = pc.makeRequestRSpec()
-node = request.RawPC("d_node")
-bs = node.Blockstore("nn_data", "/mydata")
-bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
-rspec.addResource( node )
 
 #data node
 #slave node                              
