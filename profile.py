@@ -42,19 +42,14 @@ node = RSpec.RawPC( "namenode" )
 node.disk_image = IMAGE
 bs = node.Blockstore("nn_bs", "/data")
 bs.size = "100GB"
+bs2 = node.Blockstore("nn_data", "/mydata")
+bs2.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
 node.addService(RSpec.Install( DOWNLOAD, "/tmp" ))
 node.addService(RSpec.Execute(shell="/bin/sh", command="sudo sh /tmp/download.sh"))
 node.addService(RSpec.Execute(shell="/bin/sh",
                                   command="sh /tmp/hadoopOnGeni/install.sh"))
 iface = node.addInterface( "if0" )
 lan.addInterface( iface )
-rspec.addResource( node )
-
-#Add data
-request = pc.makeRequestRSpec()
-node = request.RawPC("namenode")
-bs = node.Blockstore("nn_data", "/mydata")
-bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
 rspec.addResource( node )
 
 
@@ -67,6 +62,8 @@ for i in range( params.n ):
     node.disk_image = IMAGE
     bs = node.Blockstore("bs_"+ str(i), "/data")
     bs.size = "30GB"
+    bs2 = node.Blockstore("data"+str(i), "/mydata")
+    bs2.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
     node.addService(RSpec.Install( DOWNLOAD, "/tmp" ))
     node.addService(RSpec.Execute(shell="/bin/sh", command="sudo sh /tmp/download.sh"))
     node.addService(RSpec.Execute(shell="/bin/sh",
@@ -75,10 +72,7 @@ for i in range( params.n ):
     lan.addInterface( iface )
     rspec.addResource( node )
     node = RSpec.RawPC("datanode" + str(i))
-    bs = node.Blockstore("data"+str(i), "/mydata")
-    bs.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
-    rspec.addResource( node )
-
+    
 
 from lxml import etree as ET
 
