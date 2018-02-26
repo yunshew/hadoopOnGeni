@@ -51,13 +51,13 @@ lan.addInterface( iface )
 rspec.addResource( node )
 
 
-request = pc.makeRequestRSpec()
+
 iface = node.addInterface()
-fsnode = request.RemoteBlockstore("fsnode", "/mydata")
+fsnode = RSpec.RemoteBlockstore("fsnode", "/mydata")
 # This URN is displayed in the web interfaace for your dataset.
 fsnode.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
 # Now we add the link between the node and the special node
-fslink = request.Link("fslink")
+fslink = RSpec.Link("fslink")
 fslink.addInterface(iface)
 fslink.addInterface(fsnode.interface)
 
@@ -65,8 +65,7 @@ fslink.addInterface(fsnode.interface)
 fslink.best_effort = True
 fslink.vlan_tagging = True
 
-# Print the RSpec to the enclosing page.
-pc.printRequestRSpec(request)
+rspec.addResource( node )
 
 #data node
 #slave node                              
