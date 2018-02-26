@@ -53,7 +53,7 @@ rspec.addResource( node )
 
 
 iface = node.addInterface()
-fsnode = RSpec.RemoteBlockstore("fsnode", "/mydata")
+fsnode = rspec.RemoteBlockstore("fsnode", "/mydata")
 # This URN is displayed in the web interfaace for your dataset.
 fsnode.dataset = "urn:publicid:IDN+utah.cloudlab.us:basemod-pg0+stdataset+arab_test"
 # Now we add the link between the node and the special node
