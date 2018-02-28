@@ -350,3 +350,12 @@ if [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
 fi
 
 sudo sh /tmp/hadoopOnGeni/install_packages.sh
+
+# Mount the dataset
+sudo mkdir /mydata
+sudo mount /dev/sdb1 /mydata
+
+# Create user directory
+sudo su - hdfs -c 'hdfs dfs -mkdir /user/yunshew'
+sudo su - hdfs -c 'hdfs dfs -chown -R yunshew /user/yunshew'
+
