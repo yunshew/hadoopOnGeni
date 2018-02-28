@@ -353,7 +353,7 @@ sudo sh /tmp/hadoopOnGeni/install_packages.sh
 
 # Mount the dataset
 sudo mkdir /mydata
-sudo mount /dev/sdb1 /mydata
+sudo mount /dev/sda1 /mydata
 
 # Create user directory
 sudo su - hdfs -c 'hdfs dfs -mkdir /user/yunshew'
