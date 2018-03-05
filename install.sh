@@ -58,8 +58,8 @@ export JAVA_HOME=/usr/java/default
 export PATH=$JAVA_HOME/bin:$PATH
 
 # Put JAVA_HOME in the environment on node startup
-#sudo echo "export JAVA_HOME=/usr/java/default" > /etc/profile.d/java.sh
-#sudo echo "export PATH=$JAVA_HOME/bin:$PATH" > /etc/profile.d/java.sh
+sudo echo "export JAVA_HOME=/usr/java/default" > /etc/profile.d/java.sh
+sudo echo "export PATH=$JAVA_HOME/bin:$PATH" > /etc/profile.d/java.sh
 
 
 #prepare the environment
@@ -358,4 +358,7 @@ sudo mount /dev/sda1 /mydata
 # Create user directory
 sudo su - hdfs -c 'hdfs dfs -mkdir /user/yunshew'
 sudo su - hdfs -c 'hdfs dfs -chown -R yunshew /user/yunshew'
+
+sudo mkdir /data/basemods_spark_data
+sudo chmod 777 /data/basemods_spark_data/
 
