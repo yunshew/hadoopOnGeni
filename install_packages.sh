@@ -15,6 +15,8 @@ fi
 
 # Master Node
 if [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
+  wget https://people.cs.clemson.edu/~luofeng/methylation/smrtanalysis.tar.gz -P /tmp/
+  sudo tar -xhzvf /tmp/smrtanalysis.tar.gz -C /opt
   wget https://people.cs.clemson.edu/~luofeng/methylation/basemods_spark_v3.tar.gz -P /tmp/
   sudo mkdir /opt/workspace_py
   sudo tar -xzf /tmp/basemods_spark_v3.tar.gz -C /opt/workspace_py
