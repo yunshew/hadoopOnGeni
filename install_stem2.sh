@@ -3,6 +3,11 @@
 # Scripted Hortonworks Data Platform 2.6.2 based on manual installation
 # Author: Fei Ding and Yupeng Wu, based on https://github.com/hortonworks/HDP-Public-Utilities
 # This is for CentOs 7
+source /tmp/hadoopOnGeni/setup.properies
+#prepare the environment
+sudo su -c "systemctl enable ntpd; systemctl start ntpd"
+sudo su -c "setenforce 0"
+sudo su -c "systemctl stop firewalld; systemctl mask firewalld"
 
 # Software requirements
 sudo yum -y update
