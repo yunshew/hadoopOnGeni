@@ -15,8 +15,8 @@
 # A simple configuration for the root user.  Change USER, HOMEDIR, and
 # KEYNAME as desired.
 #
-USER=root
-HOMEDIR=/root
+USER=yunshew
+HOMEDIR=/users/yunshew
 KEYNAME=id_rsa
 
 #
