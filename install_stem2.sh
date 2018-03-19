@@ -36,6 +36,11 @@ sudo echo "export PATH=$JAVA_HOME/bin:$PATH" > /etc/profile.d/java.sh
 
 
 #All hosts
+wget http://apache.claz.org/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz -P /tmp
+sudo tar zxvf /tmp/spark-2.3.0-bin-hadoop2.7.tgz -C /opt
+sudo cp /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh.template /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
+sudo echo "JAVA_HOME=/usr/java/default" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
+sudo chown -R yunshew /opt/spark-2.3.0-bin-hadoop2.7
 
 
 # Mount the dataset
