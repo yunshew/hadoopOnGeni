@@ -20,10 +20,11 @@ sudo yum install -y ntp
 sudo yum install -y openssl
 
 # Download java package
+
 wget --no-cookies \
 --no-check-certificate \
 --header "Cookie: oraclelicense=accept-securebackup-cookie" \
-$java_repo_location -O jdk-8-linux-x64.tar.gz
+$java_repo_location -O /tmp/jdk-8-linux-x64.tar.gz
 
 #set up java
 sudo mkdir /usr/java && cd /usr/java
