@@ -98,7 +98,8 @@ if [ "$(echo $(hostname) | cut -d. -f1)" != "namenode" ]; then
     sleep 20
 	# NFS clients setup: use the publicly-routable IP addresses for both the
   # server and the clients to avoid interference with the experiment.
-	nfs_ip=`ssh namenode "hostname -i"`
-	sudo su -c "mkdir /mydata; mount -t nfs4 $nfs_ip:/mydata /mydata"
-	sudo echo "$nfs_ip:/mydata /mydata nfs4 rw,sync,hard,intr,addr=`hostname -i` 0 0" >> /etc/fstab
+    nfs_ip=`ssh namenode "hostname -i"`
+    sudo mkdir /mydata
+    sudo mount -t nfs4 $nfs_ip:/mydata /mydata
+    sudo echo "$nfs_ip:/mydata /mydata nfs4 rw,sync,hard,intr,addr=`hostname -i` 0 0" >> /etc/fstab
 fi
