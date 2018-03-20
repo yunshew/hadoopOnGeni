@@ -113,4 +113,4 @@ fi
 
 # Set the slave nodes
 cut -f 3 -d " " /etc/hosts | grep "datanode" > /tmp/slaves
-cp /tmp/slaves /opt/spark-2.3.0-bin-hadoop2.7/conf/
+sudo cp /tmp/slaves /opt/spark-2.3.0-bin-hadoop2.7/conf/
