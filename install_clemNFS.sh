@@ -52,14 +52,18 @@ sudo mkdir /data/basemods_spark_data
 sudo chmod 777 /data/basemods_spark_data/
 
 # Set some environment variables
-sudo cat >> /etc/profile <<EOM
+cp /etc/profile /tmp/
+cat >> /tmp/profile <<EOM
 export EDITOR=vim
 EOM
+sudo cp /tmp/profile /etc/
 
 # Disable user prompting for connecting to unseen hosts.
-sudo cat >> /etc/ssh/ssh_config <<EOM
+cp /etc/ssh/ssh_config /tmp/
+cat >> /tmp/ssh_config <<EOM
     StrictHostKeyChecking no
 EOM
+sudo cp /tmp/ssh_config /etc/ssh/
 # Setup password-less ssh between nodes
 for user in $(ls /users/)
 do
@@ -102,5 +106,11 @@ if ! [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
     nfs_ip=`ssh namenode "hostname -i"`
     sudo mkdir /mydata
     sudo mount -t nfs4 $nfs_ip:/mydata /mydata
-    sudo echo "$nfs_ip:/mydata /mydata nfs4 rw,sync,hard,intr,addr=`hostname -i` 0 0" >> /etc/fstab
+    cp /etc/fstab /tmp/
+    echo "$nfs_ip:/mydata /mydata nfs4 rw,sync,hard,intr,addr=`hostname -i` 0 0" >> /tmp/fstab
+    sudo cp /tmp/fstab /etc/
 fi
+
+# Set the slave nodes
+cut -f 3 -d " " /etc/hosts | grep "datanode" > /tmp/slaves
+cp /tmp/slaves /opt/spark-2.3.0-bin-hadoop2.7/conf/
