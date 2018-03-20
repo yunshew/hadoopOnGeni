@@ -89,8 +89,9 @@ if [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
   # Give it a second to start-up
   sleep 2
   touch /tmp/setup-nfs-done
+ fi
 
-if [ "$(echo $(hostname) | cut -d. -f1)" != "namenode" ]; then
+if ! [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
   # Wait until nfs is properly set up
   # while [ "$(ssh namenode "[ -f /tmp/setup-nfs-done ] && echo 1 || echo 0")" != "1" ]; do
   #    sleep 1
