@@ -50,3 +50,15 @@ sudo su - hdfs -c 'hdfs dfs -mkdir /user/yunshew'
 sudo su - hdfs -c 'hdfs dfs -chown -R yunshew /user/yunshew'
 sudo mkdir /data/basemods_spark_data
 sudo chmod 777 /data/basemods_spark_data/
+
+# Setup password-less ssh between nodes
+for user in $(ls /users/)
+do
+    ssh_dir=/users/$user/.ssh
+    /usr/bin/geni-get key > $ssh_dir/id_rsa
+    chmod 600 $ssh_dir/id_rsa
+    chown $user: $ssh_dir/id_rsa
+    ssh-keygen -y -f $ssh_dir/id_rsa > $ssh_dir/id_rsa.pub
+    cat $ssh_dir/id_rsa.pub >> $ssh_dir/authorized_keys
+    chmod 644 $ssh_dir/authorized_keys
+done
