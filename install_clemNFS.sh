@@ -42,12 +42,12 @@ sudo echo "export PATH=$JAVA_HOME/bin:$PATH" > /etc/profile.d/java.sh
 
 sudo sh /tmp/hadoopOnGeni/install_packages.sh
 
-# Mount the dataset
-sudo mkdir /mydata
-sudo mount /dev/sdc1 /mydata
-# Create user directory
-sudo su - hdfs -c 'hdfs dfs -mkdir /user/yunshew'
-sudo su - hdfs -c 'hdfs dfs -chown -R yunshew /user/yunshew'
+# Mount the dataset on namenode
+if [ $(hostname --short) == "namenode" ]
+    sudo mkdir /mydata
+    sudo mount /dev/sdc1 /mydata
+fi
+
 sudo mkdir /data/basemods_spark_data
 sudo chmod 777 /data/basemods_spark_data/
 
