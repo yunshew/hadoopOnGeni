@@ -10,7 +10,7 @@ sudo su -c "setenforce 0"
 sudo su -c "systemctl stop firewalld; systemctl mask firewalld"
 
 # Software requirements
-sudo yum -y update
+# sudo yum -y update
 sudo yum install -y scp
 sudo yum install -y curl
 sudo yum install -y tar
