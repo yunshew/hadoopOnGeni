@@ -79,7 +79,7 @@ if [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
   # Make the NFS exported file system readable and writeable by all hosts in the
   # system (/etc/exports is the access control list for NFS exported file
   # systems, see exports(5) for more information).
-  sudo echo "/mydata *(rw,sync,no_root_squash)"  /tmp/exports
+  sudo echo "/mydata *(rw,sync,no_root_squash)" > /tmp/exports
   sudo cp /tmp/exports /etc/
 
   # Start the NFS service.
@@ -93,10 +93,10 @@ if [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
 
 if ! [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
   # Wait until nfs is properly set up
-  # while [ "$(ssh namenode "[ -f /tmp/setup-nfs-done ] && echo 1 || echo 0")" != "1" ]; do
-  #    sleep 1
-  #done
-    sleep 20
+   while [ "$(ssh namenode "[ -f /tmp/setup-nfs-done ] && echo 1 || echo 0")" != "1" ]; do
+      sleep 1
+  done
+  #  sleep 20
 	# NFS clients setup: use the publicly-routable IP addresses for both the
   # server and the clients to avoid interference with the experiment.
     nfs_ip=`ssh namenode "hostname -i"`
