@@ -43,7 +43,7 @@ sudo echo "export PATH=$JAVA_HOME/bin:$PATH" > /etc/profile.d/java.sh
 sudo sh /tmp/hadoopOnGeni/install_packages.sh
 
 # Mount the dataset on namenode
-if [ $(hostname --short) == "namenode" ]
+if [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
     sudo mkdir /mydata
     sudo mount /dev/sdc1 /mydata
 fi
@@ -52,12 +52,12 @@ sudo mkdir /data/basemods_spark_data
 sudo chmod 777 /data/basemods_spark_data/
 
 # Set some environment variables
-cat >> /etc/profile <<EOM
+sudo cat >> /etc/profile <<EOM
 export EDITOR=vim
 EOM
 
 # Disable user prompting for connecting to unseen hosts.
-cat >> /etc/ssh/ssh_config <<EOM
+sudo cat >> /etc/ssh/ssh_config <<EOM
     StrictHostKeyChecking no
 EOM
 # Setup password-less ssh between nodes
@@ -72,28 +72,26 @@ do
     chmod 644 $ssh_dir/authorized_keys
 done
 
-if [ $(hostname --short) == "namenode" ]
-then
+if [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
   # Make the file system rwx by all.
   sudo chmod 777 /mydata
 
   # Make the NFS exported file system readable and writeable by all hosts in the
   # system (/etc/exports is the access control list for NFS exported file
   # systems, see exports(5) for more information).
-  sudo su -
-  echo "/mydata *(rw,sync,no_root_squash)" >> /etc/exports
+  sudo echo "/mydata *(rw,sync,no_root_squash)" >> /etc/exports
 
   # Start the NFS service.
-  systemctl enable nfs-server.service
-  systemctl start nfs-server.service
+  sudo systemctl enable nfs-server.service
+  sudo systemctl start nfs-server.service
 
   # Give it a second to start-up
   sleep 2
   touch /tmp/setup-nfs-done
-  exit
-else
+
+if [ "$(echo $(hostname) | cut -d. -f1)" != "namenode" ]; then
   # Wait until nfs is properly set up
-  #while [ "$(ssh namenode "[ -f /tmp/setup-nfs-done ] && echo 1 || echo 0")" != "1" ]; do
+  # while [ "$(ssh namenode "[ -f /tmp/setup-nfs-done ] && echo 1 || echo 0")" != "1" ]; do
   #    sleep 1
   #done
     sleep 20
