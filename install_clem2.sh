@@ -51,6 +51,15 @@ sudo su - hdfs -c 'hdfs dfs -chown -R yunshew /user/yunshew'
 sudo mkdir /data/basemods_spark_data
 sudo chmod 777 /data/basemods_spark_data/
 
+# Set some environment variables
+cat >> /etc/profile <<EOM
+export EDITOR=vim
+EOM
+
+# Disable user prompting for connecting to unseen hosts.
+cat >> /etc/ssh/ssh_config <<EOM
+    StrictHostKeyChecking no
+EOM
 # Setup password-less ssh between nodes
 for user in $(ls /users/)
 do
