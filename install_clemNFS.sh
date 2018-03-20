@@ -80,7 +80,7 @@ then
   # Make the NFS exported file system readable and writeable by all hosts in the
   # system (/etc/exports is the access control list for NFS exported file
   # systems, see exports(5) for more information).
-	sudo echo "/mydata *(rw,sync,no_root_squash)" >> /etc/exports
+  sudo echo "/mydata *(rw,sync,no_root_squash)" >> /etc/exports
 
   # Start the NFS service.
   sudo systemctl enable nfs-server.service
@@ -91,10 +91,10 @@ then
  > /tmp/setup-nfs-done
 else
   # Wait until nfs is properly set up
-  while [ "$(ssh namenode "[ -f /tmp/setup-nfs-done ] && echo 1 || echo 0")" != "1" ]; do
-      sleep 1
-  done
-
+  #while [ "$(ssh namenode "[ -f /tmp/setup-nfs-done ] && echo 1 || echo 0")" != "1" ]; do
+  #    sleep 1
+  #done
+    sleep 20
 	# NFS clients setup: use the publicly-routable IP addresses for both the
   # server and the clients to avoid interference with the experiment.
 	nfs_ip=`ssh namenode "hostname -i"`
