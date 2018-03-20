@@ -10,7 +10,7 @@ wget http://apache.cs.utah.edu/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz -
 sudo tar zxvf /tmp/spark-2.3.0-bin-hadoop2.7.tgz -C /opt
 sudo cp /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh.template /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
 sudo echo "JAVA_HOME=/usr/java/default" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
-sudo chown -R yunshew /opt/spark-2.3.0-bin-hadoop2.7
+#sudo chown -R yunshew /opt/spark-2.3.0-bin-hadoop2.7
 
 # All Worker Node
 if ! [ "$(echo $(hostname) | cut -d. -f1)" = "namenode" ]; then
