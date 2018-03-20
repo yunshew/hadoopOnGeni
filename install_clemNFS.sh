@@ -80,15 +80,17 @@ then
   # Make the NFS exported file system readable and writeable by all hosts in the
   # system (/etc/exports is the access control list for NFS exported file
   # systems, see exports(5) for more information).
-  sudo echo "/mydata *(rw,sync,no_root_squash)" >> /etc/exports
+  sudo su -
+  echo "/mydata *(rw,sync,no_root_squash)" >> /etc/exports
 
   # Start the NFS service.
-  sudo systemctl enable nfs-server.service
-  sudo systemctl start nfs-server.service
+  systemctl enable nfs-server.service
+  systemctl start nfs-server.service
 
   # Give it a second to start-up
   sleep 2
- > /tmp/setup-nfs-done
+  touch /tmp/setup-nfs-done
+  exit
 else
   # Wait until nfs is properly set up
   #while [ "$(ssh namenode "[ -f /tmp/setup-nfs-done ] && echo 1 || echo 0")" != "1" ]; do
