@@ -10,16 +10,16 @@ wget http://apache.cs.utah.edu/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz -
 sudo tar zxvf /tmp/spark-2.3.0-bin-hadoop2.7.tgz -C /opt
 sudo cp /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh.template /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
 sudo echo "JAVA_HOME=/usr/java/default" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
-sudo echo "SPARK_WORKER_MEMORY=200g" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
-sudo echo "SPARK_LOCAL_DIRS=/data/tmp_spark" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
-sudo cp /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf.template /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
-sudo echo "spark.reducer.maxReqSizeShuffleToMem	1K" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
-sudo echo "spark.serializer                 org.apache.spark.serializer.KryoSerializer" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
-sudo echo "spark.driver.memory              200g" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
-sudo echo "spark.executor.memory		 50g" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
-sudo echo "spark.executor.cores		 5" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
-sudo echo "spark.cores.max			 400" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
-sudo echo "spark.local.dir			 /data/tmp_spark" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
+#sudo echo "SPARK_WORKER_MEMORY=200g" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
+#sudo echo "SPARK_LOCAL_DIRS=/data/tmp_spark" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
+#sudo cp /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf.template /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
+#sudo echo "spark.reducer.maxReqSizeShuffleToMem	1K" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
+#sudo echo "spark.serializer                 org.apache.spark.serializer.KryoSerializer" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
+#sudo echo "spark.driver.memory              200g" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
+#sudo echo "spark.executor.memory		 50g" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
+#sudo echo "spark.executor.cores		 5" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
+#sudo echo "spark.cores.max			 400" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
+#sudo echo "spark.local.dir			 /data/tmp_spark" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
 #sudo chown -R yunshew /opt/spark-2.3.0-bin-hadoop2.7
 
 # All Worker Node
