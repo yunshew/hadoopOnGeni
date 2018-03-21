@@ -50,6 +50,8 @@ fi
 
 sudo mkdir /data/basemods_spark_data
 sudo chmod 777 /data/basemods_spark_data/
+sudo mkdir /data/tmp_spark
+sudo chmod 777 /data/tmp_spark
 
 # Set some environment variables
 cp /etc/profile /tmp/
