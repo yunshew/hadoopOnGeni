@@ -7,11 +7,11 @@ sudo pip install numpy h5py paramiko pbcore py4j pyspark
 
 # Install Spark2
 wget http://apache.cs.utah.edu/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz -P /tmp/
-sudo tar zxvf /tmp/spark-2.3.0-bin-hadoop2.7.tgz -C /opt
-sudo cp /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh.template /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
-sudo echo "JAVA_HOME=/usr/java/default" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
-#sudo echo "SPARK_WORKER_MEMORY=200g" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
-#sudo echo "SPARK_LOCAL_DIRS=/data/tmp_spark" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-env.sh
+sudo tar zxvf /tmp/spark-2.3.0-bin-hadoop2.7.tgz -C /data
+sudo mv /data/spark-2.3.0-bin-hadoop2.7 /data/spark2
+sudo cp /data/spark2/conf/spark-env.sh.template /data/spark2/conf/spark-env.sh
+sudo echo "JAVA_HOME=/usr/java/default" >> /data/spark2/conf/spark-env.sh
+sudo echo "SPARK_LOCAL_DIRS=/data/tmp_spark" >> /data/spark2/conf/spark-env.sh
 #sudo cp /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf.template /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
 #sudo echo "spark.reducer.maxReqSizeShuffleToMem	1K" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
 #sudo echo "spark.serializer                 org.apache.spark.serializer.KryoSerializer" >> /opt/spark-2.3.0-bin-hadoop2.7/conf/spark-defaults.conf
